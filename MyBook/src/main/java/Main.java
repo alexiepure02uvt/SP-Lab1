@@ -1,8 +1,5 @@
 import models.*;
-import services.AlignCenter;
-import services.AlignLeft;
-import services.AlignRight;
-import services.BookStatistics;
+import services.*;
 
 public class Main {
 
@@ -20,8 +17,13 @@ public class Main {
     cap1.add(new Image("ImageTwo"));
     cap1.add(new Paragraph("Some text"));
     cap1.add(new Table("Table 1"));
+
     BookStatistics stats = new BookStatistics();
     cap1.accept(stats);
     stats.printStatistics();
+
+    BookSaveVisitor save = new BookSaveVisitor("D:\\facultate\\an3\\sp\\file.json");
+    cap1.accept(save);
+    save.writeToJson();
     }
 }
