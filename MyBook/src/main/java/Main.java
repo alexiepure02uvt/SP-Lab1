@@ -4,26 +4,24 @@ import services.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-    Section cap1 = new Section("Capitolul 1");
-    Paragraph p1 = new Paragraph("Paragraph 1");
-    cap1.add(p1);
-    Paragraph p2 = new Paragraph("Paragraph 2");
-    cap1.add(p2);
-    Paragraph p3 = new Paragraph("Paragraph 3");
-    cap1.add(p3);
-    Paragraph p4 = new Paragraph("Paragraph 4");
-    cap1.add(p4);
-    cap1.add(new ImageProxy("ImageOne"));
-    cap1.add(new Image("ImageTwo"));
-    cap1.add(new Paragraph("Some text"));
-    cap1.add(new Table("Table 1"));
+        Book book = new Book("Noapte buna, copii!");
+        Author rpGheo = new Author("Radu Pavel Gheo");
+        book.addAuthor(rpGheo);
 
-    BookStatistics stats = new BookStatistics();
-    cap1.accept(stats);
-    stats.printStatistics();
+        Section cap1 = new Section("Cap1");
+        cap1.add(new Paragraph("para2"));
+        cap1.add(new Paragraph("para3"));
+        cap1.add(new Section("Cap2"));
+        cap1.add(new Paragraph("para4"));
+        cap1.add(new ImageProxy("img1"));
+        cap1.add(new Image("img2"));
+        cap1.add(new Paragraph("para5"));
+        cap1.add(new Section("subCap1"));
+        cap1.add(new Table("table1"));
 
-    BookSaveVisitor save = new BookSaveVisitor("D:\\facultate\\an3\\sp\\file.json");
-    cap1.accept(save);
-    save.writeToJson();
+        BookContentVisitor visitor = new BookContentVisitor();
+        cap1.accept(visitor);
+        book.addContent(visitor.getTableOfContents());
+        book.print();
     }
 }
