@@ -10,7 +10,9 @@ public class Section implements Element {
     public Section(String name) {
         this.name = name;
     }
+
     public void print(){
+        System.out.println();
         System.out.println(name);
         for (Element el : subElements) {
             el.print();

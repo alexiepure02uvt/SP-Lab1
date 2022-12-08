@@ -7,7 +7,7 @@ public class Table implements Element {
         this.title = title;
     }
     public void print() {
-        System.out.println("models.Table with title: " + title);
+        System.out.println("Table: " + title);
     }
     @Override
     public void add(Element e) {

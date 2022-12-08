@@ -3,8 +3,13 @@ import services.*;
 
 public class Main {
 
+    public static void Printing() {
+        DocumentManager.getInstance().getBook().print();
+    }
+
     public static void main(String[] args) throws Exception {
         Book book = new Book("Noapte buna, copii!");
+        DocumentManager.getInstance().setBook(book);
         Author rpGheo = new Author("Radu Pavel Gheo");
         book.addAuthor(rpGheo);
 
@@ -19,9 +24,13 @@ public class Main {
         cap1.add(new Section("subCap1"));
         cap1.add(new Table("table1"));
 
-        BookContentVisitor visitor = new BookContentVisitor();
-        cap1.accept(visitor);
-        book.addContent(visitor.getTableOfContents());
-        book.print();
+        book.addContent(cap1);
+
+        Printing();
+
+//        BookContentVisitor visitor = new BookContentVisitor();
+//        cap1.accept(visitor);
+//        book.addContent(visitor.getTableOfContents());
+//        book.print();
     }
 }
